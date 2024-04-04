@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.e-jet-efb {
+    font-size: 40px;
+}
+
+.e-jet-efb-button {
+    height: 50px;
+    width: 100px;
+}
+
+body {
+    background-color: bisque;
+}
