@@ -1,16 +1,54 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.e-jet-efb {
-    font-size: 40px;
-}
-
-.e-jet-efb-button {
-    height: 50px;
-    width: 100px;
-}
-
 body {
-    background-color: bisque;
+    background-color: rgb(217, 217, 217);
+}
+
+.navbar-nav,
+.mr-auto {
+    flex: 1;
+    margin: auto !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-control {
+    max-width: 150px;
+}
+
+label {
+    font-size: small;
+    text-align: left;
+    float: left;
+}
+
+.custom-navbar {
+    color: black;
+    background-color: white;
+}
+
+.navbar-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar-btn .btn {
+    margin-top: 5px;
+    border: none;
+    /* Adjust as needed */
+}
+
+.navbar-btn .bi {
+    font-size: 2rem;
+    /* Adjust icon size as needed */
+}
+
+.start-flight-button {
+    font-size: small;
+}
+
+.import-source-button {
+    font-size: x-small;
+    font-weight: bold;
+    height: 70%;
+    width: 100%;
 }
