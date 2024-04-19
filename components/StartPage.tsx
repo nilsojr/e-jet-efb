@@ -1,6 +1,13 @@
-import { FSComponent, DisplayComponent, VNode } from "@microsoft/msfs-sdk";
+import { FSComponent, DisplayComponent, VNode, ComponentProps } from "@microsoft/msfs-sdk";
+import { InfoCard } from "./InfoCard";
+import { NavSource } from "./NavSource";
+import { MainGrid } from "./MainGrid";
 
-export class StartPage extends DisplayComponent<any> {
+export interface StartPageProps extends ComponentProps {
+
+}
+
+export class StartPage extends DisplayComponent<StartPageProps> {
     public render(): VNode {
         return (
             <div class="container">
@@ -9,69 +16,12 @@ export class StartPage extends DisplayComponent<any> {
                         <div class="row mt-3 rounded-3 start-info" style="background-color: white; height: 100%;">
                             <div class="col-8">
                                 <div class="container">
-
-                                    <div class="row p-2">
-                                        <div class="col">
-                                            <div class="row">
-                                                <label class="text-sm" for="FlightNO">FLIGHT NO</label>
-                                            </div>
-                                            <div class="row">
-                                                <input id="FlightNO" type="text" placeholder="BA4455"
-                                                    class="form-control start-info-input" />
-                                            </div>
-                                        </div>
-                                        <div class="col mx-2">
-                                            <div class="row">
-                                                <label for="CallSign">CALL SIGN</label>
-                                            </div>
-                                            <div class="row">
-                                                <input id="CallSign" type="text" placeholder="CFE7LM"
-                                                    class="form-control start-info-input" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row p-2">
-                                        <div class="col">
-                                            <div class="row">
-                                                <label for="From">FROM</label>
-                                            </div>
-                                            <div class="row">
-                                                <input id="From" type="text" placeholder="EGLC"
-                                                    class="form-control start-info-input" />
-                                            </div>
-                                        </div>
-                                        <div class="col mx-2">
-                                            <div class="row">
-                                                <label for="To">TO</label>
-                                            </div>
-                                            <div class="row">
-                                                <input id="To" type=" text" placeholder="EDDF"
-                                                    class="form-control start-info-input" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row p-2">
-                                        <div class="col">
-                                            <div class="row">
-                                                <label for="OffBlock">OFF BLOCK (UTC)</label>
-                                            </div>
-                                            <div class="row">
-                                                <input id="OffBlock" type="text" placeholder="1125"
-                                                    class="form-control start-info-input" />
-                                            </div>
-                                        </div>
-                                        <div class="col mx-2">
-                                            <div class="row">
-                                                <label for="EnRoute">ENROUTE</label>
-                                            </div>
-                                            <div class="row">
-                                                <input id="EnRoute" type="text" placeholder="01:45"
-                                                    class="form-control start-info-input" />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <InfoCard labelRow1="FLIGHT NO" dataRow1="" placeHolderRow1="BA4455" 
+                                        labelRow2="CALL SIGN" dataRow2="" placeHolderRow2="CFE7LM" />
+                                    <InfoCard labelRow1="FROM" dataRow1="" placeHolderRow1="EGLC"
+                                        labelRow2="TO" dataRow2="" placeHolderRow2="EDDF" />
+                                    <InfoCard labelRow1="OFF BLOCK (UTC)" dataRow1="" placeHolderRow1="1125"
+                                        labelRow2="ENROUTE" dataRow2="" placeHolderRow2="01:55" />
                                 </div>
                             </div>
                             <div class="col-4 d-flex flex-column">
@@ -80,94 +30,30 @@ export class StartPage extends DisplayComponent<any> {
                                 </div>
                                 <div class="row  flex-grow-1 d-flex flex-column justify-content-between align-items-end p-3">
                                     <span></span>
-                                    <button class="btn btn-outline-success rounded-4 fw-bold start-flight-button" style="max-width: 150px; max-height: 50px;">START FLIGHT</button>
+                                    <button id="start-flight" class="btn btn-outline-success rounded-4 fw-bold start-flight-button" 
+                                        style="max-width: 150px; max-height: 50px;">START FLIGHT</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
-
-                        <div class="container mt-3 rounded-3" style="background-color: white; height: 29%;">
-                            <div class="row p-2">
-
-                                <div class="col">
-                                    <div class="row">
-                                        <label>Source</label>
-                                    </div>
-                                    <div class="row fw-bold">
-                                        <label class="fs-5">SimBrief</label>
-                                    </div>
-                                </div>
-                                <div class="col-2 d-grid gap-2">
-                                    <div class="row align-items-center">
-                                        <button class="btn btn-sm btn-outline-dark rounded-4 import-source-button">IMPORT</button>
-                                    </div>
-                                </div>
-                                <div class="col align-self-center">
-                                    <div class="d-flex ms-auto">
-                                        <div class="ms-auto p-2">
-                                            Source Icon
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="container mt-3 rounded-3" style="background-color: white; height: 29%;">
-                            <div class="row p-2">
-                                <div class="col">
-                                    <div class="row">
-                                        <label>Source</label>
-                                    </div>
-                                    <div class="row fw-bold">
-                                        <label class="fs-5">Vatsim</label>
-                                    </div>
-                                </div>
-                                <div class="col-2 d-grid gap-2">
-                                    <div class="row align-items-center">
-                                        <button class="btn btn-sm btn-outline-dark rounded-4 import-source-button">IMPORT</button>
-                                    </div>
-                                </div>
-                                <div class="col align-self-center">
-                                    <div class="d-flex ms-auto">
-                                        <div class="ms-auto p-2">
-                                            Source Icon
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container mt-3 rounded-3" style="background-color: white; height: 29%;">
-                            <div class="row p-2">
-                                <div class="col">
-                                    <div class="row">
-                                        <label>Source</label>
-                                    </div>
-                                    <div class="row fw-bold">
-                                        <label class="fs-5">IVAO</label>
-                                    </div>
-                                </div>
-                                <div class="col-2 d-grid gap-2">
-                                    <div class="row align-items-center">
-                                        <button class="btn btn-sm btn-outline-dark rounded-4 import-source-button">IMPORT</button>
-                                    </div>
-                                </div>
-                                <div class="col align-self-center">
-                                    <div class="d-flex ms-auto">
-                                        <div class="ms-auto p-2">
-                                            Source Icon
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <NavSource sourceName="Simbrief" sourceIcon="SIMBRIEF" />
+                        <NavSource sourceName="Vatsim" sourceIcon="VATSIM" />
+                        <NavSource sourceName="IVAO" sourceIcon="IVAO" />
                     </div>
-
                 </div>
             </div>
         )
+    }
+
+    public startFlight() {
+        if (document.getElementById('main-grid') != undefined) {
+            document.getElementById('main-grid')!.innerHTML = "";
+            FSComponent.render(<MainGrid callsign='nilso' />, document.getElementById('main-grid'));
+        }
+      }
+
+    onAfterRender(node: VNode): void {
+        document.getElementById('start-flight')?.addEventListener("click", this.startFlight.bind(this));
     }
 }

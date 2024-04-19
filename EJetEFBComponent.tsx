@@ -1,14 +1,10 @@
 import { FSComponent, DisplayComponent, VNode, Subject, ComponentProps } from '@microsoft/msfs-sdk';
 import { Navbar } from './components/Navbar';
 import { MainGrid } from './components/MainGrid';
+import { StartPage } from './components/StartPage';
+import { BottomNavbar } from './components/BottomNavbar';
 
 const textValue = Subject.create<string>('default');
-
-function InfoText(text: any) {
-  return <span className='text-2xl font-semibold'>
-    {text}
-  </span>
-}
 
 function DateInfo() {
   // const [currentDate, setCurrentDate] = useState<string>('');
@@ -29,7 +25,7 @@ function DateInfo() {
     <div>
       <label caption='DATE' />
       <br />
-      <InfoText text={currentDate} />
+      {/* <InfoText text={currentDate} /> */}
     </div>
   )
 }
@@ -59,28 +55,33 @@ export class EJetEFBComponent extends DisplayComponent<EJetEFBComponentProps> {
     this.props.navBarAdded = false;
   }
 
+  public init() {
+    document.getElementById('main-grid')!.innerHTML = "";
+    FSComponent.render(<StartPage />, document.getElementById('main-grid'));
+  }
+
   public render(): VNode {
     return (
       <>
         <div class="bg-dark-grey">
           <Navbar />
-          <input id="input-name" type="text" aria-label="Callsign" class="form-control mx-3"></input>
-          <button id="btn-test" class="btn btn-primary mx-3 mt-3">Show</button>
-          <div id="temp">
-
+          <div id="main-grid">
           </div>
-          <button id="btn-test-2" class="btn btn-secondary mx-3 mt-3">Hide</button>
+          <BottomNavbar />
         </div>
       </>
     );
   }
 
   public onAfterRender(node: VNode): void {
+    this.init();
 
-    let btnTest = document.getElementById('btn-test');
-    btnTest!.addEventListener("click", this.handleClick.bind(this));
+    document.getElementById("init-flight")?.addEventListener("click", this.init.bind(this));
+    
+    // let btnTest = document.getElementById('btn-test');
+    // btnTest!.addEventListener("click", this.handleClick.bind(this));
 
-    document.getElementById('btn-test-2')?.addEventListener("click", this.hide.bind(this));
+    // document.getElementById('btn-test-2')?.addEventListener("click", this.hide.bind(this));
   }
 }
 
